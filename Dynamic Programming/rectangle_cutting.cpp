@@ -15,25 +15,20 @@ using namespace std;
 int main() {
     int a, b;
     cin >> a >> b;
-    if (a > b) swap(a, b);
+    int d[a+1][b+1]; 
 
-    int f[a][b];
-    for (int i=0; i<a; i++) {
-        for (int j=0; j<b; j++) { 
-            if (i==j) f[i][j]=0;
-            if (i==0 || j==0) {
-                f[i][j]=max(i,j);
-            } else {
-                // Dimension of rectangle is
-                // (i+1) by (j+1)
-                
-                int ans=INT_MAX;
-                f(k,0,j) ans=min(ans,f[i][j-k]+f[i][k]);
-                f(k,0,i) ans=min(ans,f[i-k][j]+f[k][j]);
-                f[i][j]=1+ans;
-            }
+    f(i,1,a+1) {
+        f(j,1,b+1) {
+             if (i==j) {
+                d[i][j]=0;
+             } else {
+                int ans=1e9;
+                f(k,1,j) ans=min(ans,d[i][k]+d[i][j-k]);
+                f(k,1,i) ans=min(ans,d[k][j]+d[i-k][j]);
+                d[i][j]=ans+1;
+             }
         }
     }
 
-    cout << f[a-1][b-1] << endl;
+    cout << d[a][b] << endl;
 }
