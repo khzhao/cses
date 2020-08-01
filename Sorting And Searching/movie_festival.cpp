@@ -18,21 +18,30 @@
 
 using namespace std;
 
-
-
 int main() {
     int n;
     cin >> n;
 
-    vector<int> contents(n);
-    up(i,0,n) cin >> contents[i];
-
-    vector<int> f;
+    vector<ar<int,2>> movies;
     up(i,0,n) {
-        auto it=lower_bound(f.begin(), f.end(), contents[i]);
-        if (it==f.end()) f.pb(contents[i]);
-        else *it=contents[i];
+        int a, b;
+        cin >> a >> b;
+        movies.pb({b, a});
+    }
+    sort(movies.begin(), movies.end());
+
+    int count=1;
+    int prev=movies[0][0];
+    up(i,1,n) {
+        int curr_s=movies[i][1];
+        int curr_f=movies[i][0];
+        if (curr_s>=prev) {
+            count++;
+            prev=curr_f;
+        }
     }
 
-    cout << f.size() << endl;
+    cout << count << endl;
+
+    
 }

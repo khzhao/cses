@@ -9,6 +9,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <queue>
+#include <set>
 
 #define ll long long
 #define ar array
@@ -18,21 +20,24 @@
 
 using namespace std;
 
-
-
 int main() {
     int n;
     cin >> n;
 
-    vector<int> contents(n);
-    up(i,0,n) cin >> contents[i];
-
-    vector<int> f;
+    set<ar<int,2>> times;
     up(i,0,n) {
-        auto it=lower_bound(f.begin(), f.end(), contents[i]);
-        if (it==f.end()) f.pb(contents[i]);
-        else *it=contents[i];
+        int a, b;
+        cin >> a >> b;
+        times.insert({a, 1});
+        times.insert({b, -1});
     }
-
-    cout << f.size() << endl;
+    
+    int sum=0;
+    int ans=0;
+    for (auto el: times) {
+        sum+=el[1];
+        ans=max(ans,sum);
+    }
+    
+    cout << ans << endl;
 }

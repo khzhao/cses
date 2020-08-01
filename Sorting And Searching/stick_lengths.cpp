@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <numeric>
 
 #define ll long long
 #define ar array
@@ -18,21 +19,22 @@
 
 using namespace std;
 
-
-
 int main() {
     int n;
     cin >> n;
 
-    vector<int> contents(n);
-    up(i,0,n) cin >> contents[i];
+    vector<ll> sticks(n);
+    up(i,0,n) cin >> sticks[i];
 
-    vector<int> f;
-    up(i,0,n) {
-        auto it=lower_bound(f.begin(), f.end(), contents[i]);
-        if (it==f.end()) f.pb(contents[i]);
-        else *it=contents[i];
+    sort(sticks.begin(), sticks.end());
+    ll mid=sticks[sticks.size()/2-1];
+    ll mid2=sticks[sticks.size()/2];
+
+    ll distance=0, distance1=0;
+    for (auto stick: sticks) {
+        distance+=abs(stick-mid);
+        distance1+=abs(stick-mid2);
     }
 
-    cout << f.size() << endl;
+    cout << min(distance, distance1) << endl;
 }

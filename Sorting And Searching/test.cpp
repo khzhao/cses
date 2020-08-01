@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <set>
 
 #define ll long long
 #define ar array
@@ -18,21 +19,18 @@
 
 using namespace std;
 
-
-
 int main() {
-    int n;
-    cin >> n;
+    set<ar<int,3>> s;
 
-    vector<int> contents(n);
-    up(i,0,n) cin >> contents[i];
-
-    vector<int> f;
-    up(i,0,n) {
-        auto it=lower_bound(f.begin(), f.end(), contents[i]);
-        if (it==f.end()) f.pb(contents[i]);
-        else *it=contents[i];
+    up(i,0,4) {
+        int n;
+        cin >> n;
+        s.insert({n, i});
     }
 
-    cout << f.size() << endl;
+    for (auto el: s) {
+        cout << el[0] << " " << el[1] << endl;
+    }
+
+
 }

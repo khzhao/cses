@@ -18,21 +18,21 @@
 
 using namespace std;
 
-
-
 int main() {
     int n;
     cin >> n;
 
-    vector<int> contents(n);
+    vector<ll> contents(n);
     up(i,0,n) cin >> contents[i];
 
-    vector<int> f;
-    up(i,0,n) {
-        auto it=lower_bound(f.begin(), f.end(), contents[i]);
-        if (it==f.end()) f.pb(contents[i]);
-        else *it=contents[i];
+    ll prev=contents[0];
+    ll max_sum=prev;
+    up(i,1,n) {
+        prev=max(prev+contents[i], contents[i]);
+        max_sum=max(max_sum, prev);
     }
 
-    cout << f.size() << endl;
+    cout << max_sum << endl;
+        
+
 }
